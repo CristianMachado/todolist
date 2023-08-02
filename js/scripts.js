@@ -118,3 +118,64 @@ editForm.addEventListener("submit", (e) => {
  toggleForms();
 
 })
+function search() {
+    
+    let input = document.querySelector(".searchbar").value;
+    input=input.toLowerCase();
+    let x = document.getElementsByClassName("todo");
+
+    for (i = 0; i < x.length; i++) { 
+        if (!x[i].innerText.toLowerCase().includes(input)) {
+            x[i].style.display="none";
+        }
+        else{
+            x[i].style.display="flex";                 
+        }
+     
+    }
+  
+}
+let reset = window.document.querySelector("#erase-button");
+let inputText = document.querySelector(".searchbar");
+reset.addEventListener("click", function(){
+   if(inputText.value.length){
+      inputText.value = inputText.value.substr(0, inputText.value.length -1);
+      inputText.focus();
+      search();
+   }
+   
+});
+
+const filter = document.querySelector("#filter-select");
+
+filter.addEventListener("click", function(){
+    let x = document.getElementsByClassName("todo");
+    if(filter.value=="all"){
+        for(i=0;i<x.length;i++){
+            x[i].style.display="flex";    
+        }
+    }
+    if(filter.value=="done"){
+        for(i=0;i<x.length;i++){
+            if(x[i].className=="todo done"){
+                x[i].style.display="flex"; 
+            }else{
+                x[i].style.display="none";
+            }
+            
+        }
+    }
+    if(filter.value=="todo"){
+        for(i=0;i<x.length;i++){
+            if(x[i].className=="todo"){
+                x[i].style.display="flex"; 
+            }else{
+                x[i].style.display="none";
+            }
+            
+        }
+    }
+
+
+
+});
